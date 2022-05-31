@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Marca;
-
+use App\Http\Requests\StoreMarca;
 
 use Illuminate\Http\Request;
 
@@ -36,8 +36,9 @@ class MarcaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMarca $request)
     {
+        
         $marca = Marca::create($request->all());
         return redirect()->route('marcas.index');
     }
@@ -71,7 +72,7 @@ class MarcaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(StoreMarca $request, Marca $marca)
     {
         $marca->update($request->all());
         

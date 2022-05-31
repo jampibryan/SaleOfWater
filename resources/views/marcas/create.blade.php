@@ -1,32 +1,54 @@
-@extends('layouts.plantilla')
+@extends('adminlte::page')
 
-@section('titulo')
+@section('title', 'Dashboard')
 
-@section('contenido')
+@section('content_header')
+<h1>CREAR MARCA</h1>
+@stop
 
-    <form action="{{route('marcas.store')}}" method="post">
-        @csrf
-           
-        <div class="mb-3">
-            <label for="marca" class="form-label">NOMBRE DE LA MARCA</label>
-            <input id="marca" name="marca" type="text" class="form-control" tabindex="2" value="{{old('marca')}}"> 
-        </div>
-      
-        <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <textarea id="descripcion" name="descripcion" type="text" class="form-control" tabindex="1"> 
-                {{old('descripcion')}}
-            </textarea>        
-        </div>
-       
-        
-        <div class="mb-3">
-            <label for="precio" class="form-label">Precio</label>
-            <input id="precio" name="precio" type="number" step="any" class="form-control"> 
-        </div>
+@section('content')
+<form action="{{route('marcas.store')}}" method="post">
+    @csrf
 
-        <a href="{{route('marcas.index')}}" class="btn btn-danger">Cancelar</a>
-        <button type="submit" class="btn btn-dark">Crear</button>
-    </form>
+    <div class="mb-3">
+        <label for="marca" class="form-label">NOMBRE DE LA MARCA</label>
+        <input id="marca" name="marca" type="text" class="form-control" tabindex="2" value="{{old('marca')}}">
+    </div>
+    @error('marca')
+            <small>*{{($message)}}</small>
+    @enderror
 
-@endsection
+
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea id="descripcion" name="descripcion" type="text" class="form-control" tabindex="1">{{old('descripcion')}}
+        </textarea>
+    </div>
+    @error('descripcion')
+            <small>*{{($message)}}</small>
+    @enderror
+
+    <div class="mb-3">
+        <label for="precio" class="form-label">Precio</label>
+        <input id="precio" name="precio" type="number" step="any" class="form-control" value="{{old('precio')}}">
+    </div>
+    @error('precio')
+            <small>*{{($message)}}</small>
+    @enderror
+    
+    <br>
+    <br>
+    <a href="{{route('marcas.index')}}" class="btn btn-danger">Cancelar</a>
+    <button type="submit" class="btn btn-dark">Crear</button>
+</form>
+@stop
+
+@section('css')
+<link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+<script>
+    console.log('Hi!');
+</script>
+@stop

@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('marcas' , MarcaController::class);
+Route::resource('empresa/marcas' , MarcaController::class);
 
 Route::middleware([
     'auth:sanctum',
